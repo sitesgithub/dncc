@@ -1,0 +1,17 @@
+{
+  "name": "nitro-checker",
+  "version": "1.0.0",
+  "description": "A discord nitro code generator and checker!",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "sitesgithub.github.io",
+  "license": "WTFPL",
+  "dependencies": {
+    "colors": "1.3.3",
+    "fs": "0.0.1-security",
+    "request": "^2.88.0",
+    "socks5-http-client": "^1.0.4"
+  }
+}
