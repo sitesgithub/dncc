@@ -14,6 +14,8 @@ process.on("SIGINT", function () {
   process.exit();
 });
 
+require('events').EventEmitter.prototype._maxListeners = 9999999;
+
 const fs = require('fs');
 const request = require('request');
 const colors = require('colors')
@@ -34,7 +36,7 @@ let a = 0 //THIS TOO!
 if (autograbproxy) {
  socks5 = false
   request.get({
-    uri: 'https://api.proxyscrape.com/?request=getproxies&proxytype=http&timeout=200',
+    uri: 'https://api.proxyscrape.com/?request=displayproxies&proxytype=http&timeout=5000',
 }, function (err, resp, body) {
   fs.writeFile('proxies.txt', body, function(err) {
     if(err) {
@@ -50,7 +52,7 @@ console.log(colors.white(`\n-------------------------------------\n[CHECKER] Dis
 getGiftCode = function () {
     let code = '';
     let dict = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    for(var i = 0; i < 18; i++){
+    for(var i = 0; i < 16; i++){
         code = code + dict.charAt(Math.floor(Math.random() * dict.length));
     }
     return code;
@@ -73,7 +75,7 @@ getRandomLine(proxies, function(result){proxy = result; sendRequest();});
 if (socks5) {
 function sendRequest(){
 request.get({
-    uri: 'http://discordapp.com/api/v6/entitlements/gift-codes/'+code+'?with_application=false&with_subscription_plan=true',
+    uri: 'http://discordapp.com/api/v9/entitlements/gift-codes/'+code+'?with_application=false&with_subscription_plan=true',
     agentClass: Agent,
     agentOptions: {
 		  socksHost: proxy.split(':')[0],
@@ -108,7 +110,7 @@ request.get({
 } else {
 function sendRequest(){
 request.get({
-    uri: 'http://discordapp.com/api/v6/entitlements/gift-codes/'+code+'?with_application=false&with_subscription_plan=true',
+    uri: 'http://discordapp.com/api/v9/entitlements/gift-codes/'+code+'?with_application=false&with_subscription_plan=true',
     proxy: 'http://'+proxy
 }, function (err, resp, body) {
     if (err) {
@@ -145,7 +147,7 @@ getRandomLine(proxies, function(result){proxy = result; sendRequest();});
 if (socks5) {
 function sendRequest(){
 request.get({
-    uri: 'http://discordapp.com/api/v6/entitlements/gift-codes/'+code+'?with_application=false&with_subscription_plan=true',
+    uri: 'http://discordapp.com/api/v9/entitlements/gift-codes/'+code+'?with_application=false&with_subscription_plan=true',
     agentClass: Agent,
     agentOptions: {
 		  socksHost: proxy.split(':')[0],
@@ -180,7 +182,7 @@ request.get({
 } else {
 function sendRequest(){
 request.get({
-    uri: 'http://discordapp.com/api/v6/entitlements/gift-codes/'+code+'?with_application=false&with_subscription_plan=true',
+    uri: 'http://discordapp.com/api/v9/entitlements/gift-codes/'+code+'?with_application=false&with_subscription_plan=true',
     proxy: 'http://'+proxy
 }, function (err, resp, body) {
     if (err) {
